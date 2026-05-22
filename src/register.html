@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Registrarse - Oasis Hotel</title>
+  <link rel="stylesheet" href="css/style.css">
+  <meta name="description" content="Registro de usuarios - Oasis Hotel">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="brand">
+        <img src="img/logo-oasis.png" alt="Oasis logo" class="logo">
+        <h1>Oasis Hotel</h1>
+      </div>
+      <nav class="main-nav">
+        <a href="login.html" class="btn btn-ghost">Iniciar sesión</a>
+      </nav>
+    </div>
+  </header>
+  <div class="container auth">
+    <h2>Crear cuenta</h2>
+    <form id="registerForm">
+      <label>Email <input type="email" id="email" required></label>
+      <label>Contraseña <input type="password" id="password" minlength="6" required></label>
+      <div class="actions">
+        <button type="submit" class="btn btn-primary">Siguiente: Datos personales</button>
+        <a href="login.html" class="btn btn-ghost">Ya tengo cuenta</a>
+      </div>
+    </form>
+  </div>
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; Oasis Hotel — Hecho con cuidado</p>
+    </div>
+  </footer>
+  <script src="js/ui.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
+

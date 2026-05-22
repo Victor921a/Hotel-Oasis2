@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Panel Admin — Oasis Hotel</title>
+  <link rel="stylesheet" href="css/style.css">
+  <meta name="description" content="Panel de administración de Oasis Hotel">
+</head>
+<body class="reservations-page admin-page">
+  <header class="site-header small">
+    <div class="container">
+      <div class="brand">
+        <h1>Oasis Hotel</h1>
+        <p id="adminWelcome" style="margin:.4rem 0 0;color:#8f8d8d;font:1em comic sans ms;"></p>
+      </div>
+      <nav class="main-nav">
+        <a href="#" id="logoutBtnAdmin" class="btn btn-ghost-inverse">Cerrar sesión</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container admin-main" style="max-width:1200px;margin:0 auto;padding:1rem;">
+
+    <!-- ── Gestión de Stock ── -->
+    <section class="admin-section" style="margin-bottom:2.5rem;">
+      <div class="page-top">
+        <h2>GESTIÓN DE STOCK</h2>
+        <p>Modifica la cantidad disponible de cada insumo para el servicio a la habitación.</p>
+      </div>
+
+      <div class="admin-row admin-row--wrap admin-row--spaced" style="margin-bottom:1rem;">
+        <input type="text" id="stockSearch" placeholder="Buscar insumo…" style="padding:.6rem 1rem;border:1px solid #d6d0c5;border-radius:8px;font-size:1rem;flex:1;min-width:200px;">
+        <button id="saveAllStock" class="btn btn-primary">Guardar todo</button>
+      </div>
+      
+
+      <div style="overflow-x:auto;">
+        <table style="width:100%;border-collapse:collapse;min-width:480px;">
+          <thead>
+            <tr style="background:rgba(201,168,75,.1);text-align:left;">
+              <th style="padding:.8rem 1rem;border-bottom:2px solid rgba(201,168,75,.3);">Insumo</th>
+              <th style="padding:.8rem 1rem;border-bottom:2px solid rgba(201,168,75,.3);">Precio</th>
+              <th style="padding:.8rem 1rem;border-bottom:2px solid rgba(201,168,75,.3);">Categoría</th>
+              <th style="padding:.8rem 1rem;border-bottom:2px solid rgba(201,168,75,.3);">Cantidad</th>
+              <th style="padding:.8rem 1rem;border-bottom:2px solid rgba(201,168,75,.3);">Acción</th>
+            </tr>
+          </thead>
+          <tbody id="stockList"></tbody>
+        </table>
+      </div>
+    </section>
+    <h3>Agregar Nuevo Producto</h3>
+    <div class="admin-grid admin-grid--5col" style="margin-bottom:1rem;align-items:end;">
+        <input type="text" id="newStockTitle" placeholder="Nombre del producto" style="padding:.6rem 1rem;border:1px solid #d6d0c5;border-radius:8px;font-size:1rem;min-width:160px;">
+        <input type="number" id="newStockPrice" min="0" placeholder="Precio" value="0" style="padding:.6rem 1rem;border:1px solid #d6d0c5;border-radius:8px;font-size:1rem;min-width:120px;">
+        <select id="newStockCategory" style="padding:.6rem 1rem;border:1px solid #d6d0c5;border-radius:8px;background:#fff;min-width:140px;">
+          <option value="">Selecciona categoría</option>
+          <option value="postres">Postres</option>
+          <option value="platos">Platos</option>
+          <option value="bebidas">Bebidas</option>
+        </select>
+        <input type="number" id="newStockQty" min="0" placeholder="Cantidad" value="1" style="padding:.6rem 1rem;border:1px solid #d6d0c5;border-radius:8px;font-size:1rem;min-width:120px;">
+        <button id="addStockItem" class="btn btn-primary">Agregar producto</button>
+      </div>
+    <section style="margin-bottom:2.5rem;">
+      <div class="page-top">
+        <h2>GESTIÓN DE HOTELES Y CATEGORÍAS</h2>
+        <p>Agrega, edita o elimina hoteles y sus categorías de habitación.</p>
+      </div>
+
+      <div class="admin-row admin-row--wrap" style="gap:1rem;">
+        <div class="admin-column" style="flex:1;min-width:320px;">
+          <div class="admin-row admin-row--wrap admin-row--bottom" style="margin-bottom:1rem;">
+            <div class="admin-column" style="flex:1;min-width:150px;">
+              <label>Nombre hotel <input type="text" id="hotelName" style="width:100%;padding:.6rem 1rem;border:1px solid #d6d0c5;border-radius:8px;"></label>
+            </div>
+            <div class="admin-column" style="flex:1;min-width:150px;">
+              <label>Ubicación <input type="text" id="hotelAddress" style="width:100%;padding:.6rem 1rem;border:1px solid #d6d0c5;border-radius:8px;"></label>
+            </div>
+            <button id="saveHotelBtn" class="btn btn-primary">Agregar hotel</button>
+          </div>
+
+          <div style="overflow-x:auto;">
+            <table style="width:100%;border-collapse:collapse;min-width:480px;">
+              <thead>
+                <tr style="background:rgba(201,168,75,.1);text-align:left;">
+                  <th style="padding:.8rem 1rem;border-bottom:2px solid rgba(201,168,75,.3);">Hotel</th>
+                  <th style="padding:.8rem 1rem;border-bottom:2px solid rgba(201,168,75,.3);">Ubicación</th>
+                  <th style="padding:.8rem 1rem;border-bottom:2px solid rgba(201,168,75,.3);">Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="hotelsTable"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="admin-column" style="flex:1;min-width:320px;">
+          <div class="admin-row admin-row--wrap admin-row--bottom" style="margin-bottom:1rem;">
+            <select id="hotelSelect" style="flex:1;padding:.6rem 1rem;border:1px solid #d6d0c5;border-radius:8px;background:#fff;"></select>
+            <button id="addRoomBtn" class="btn btn-primary">Agregar categoría</button>
+          </div>
+
+          <div id="roomForm" style="display:none;margin-bottom:1rem;padding:1rem;border:1px solid #ddd;border-radius:12px;background:#faf7f0;">
+            <div class="admin-row admin-row--wrap admin-row--bottom" style="margin-bottom:1rem;">
+              <div class="admin-column" style="flex:1;min-width:120px;"><label>Nombre <input type="text" id="roomTitle" style="width:100%;padding:.6rem 1rem;border:1px solid #d6d0c5;border-radius:8px;"></label></div>
+              <div class="admin-column" style="flex:1;min-width:120px;"><label>Precio <input type="number" id="roomPrice" min="0" style="width:100%;padding:.6rem 1rem;border:1px solid #d6d0c5;border-radius:8px;"></label></div>
+              <div class="admin-column" style="flex:1;min-width:120px;"><label>Capacidad <input type="number" id="roomGuests" min="1" value="1" style="width:100%;padding:.6rem 1rem;border:1px solid #d6d0c5;border-radius:8px;"></label></div>
+            </div>
+            <div style="margin-bottom:1rem;"><label>Descripción <input type="text" id="roomDesc" style="width:100%;padding:.6rem 1rem;border:1px solid #d6d0c5;border-radius:8px;"></label></div>
+            <div class="admin-row admin-row--wrap" style="gap:.6rem;">
+              <button id="saveRoomBtn" class="btn btn-primary">Guardar categoría</button>
+              <button id="cancelRoomBtn" class="btn btn-secondary">Cancelar</button>
+            </div>
+          </div>
+
+          <div style="overflow-x:auto;">
+            <table style="width:100%;border-collapse:collapse;min-width:480px;">
+              <thead>
+                <tr style="background:rgba(201,168,75,.1);text-align:left;">
+                  <th style="padding:.8rem 1rem;border-bottom:2px solid rgba(201,168,75,.3);">Categoría</th>
+                  <th style="padding:.8rem 1rem;border-bottom:2px solid rgba(201,168,75,.3);">Precio</th>
+                  <th style="padding:.8rem 1rem;border-bottom:2px solid rgba(201,168,75,.3);">Capacidad</th>
+                  <th style="padding:.8rem 1rem;border-bottom:2px solid rgba(201,168,75,.3);">Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="roomsTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Reservas de clientes ── -->
+    <section style="margin-bottom:2.5rem;">
+      <div class="page-top">
+        <h2>RESERVAS DE CLIENTES</h2>
+        <p>Visualiza todas las reservas hechas por los usuarios y cancela las que sea necesario.</p>
+      </div>
+      <div style="overflow-x:auto;">
+        <table style="width:100%;border-collapse:collapse;min-width:700px;">
+          <thead>
+            <tr style="background:rgba(201,168,75,.1);text-align:left;">
+              <th style="padding:.8rem 1rem;border-bottom:2px solid rgba(201,168,75,.3);">ID</th>
+              <th style="padding:.8rem 1rem;border-bottom:2px solid rgba(201,168,75,.3);">Cliente</th>
+              <th style="padding:.8rem 1rem;border-bottom:2px solid rgba(201,168,75,.3);">Hotel</th>
+              <th style="padding:.8rem 1rem;border-bottom:2px solid rgba(201,168,75,.3);">Habitación</th>
+              <th style="padding:.8rem 1rem;border-bottom:2px solid rgba(201,168,75,.3);">Fechas</th>
+              <th style="padding:.8rem 1rem;border-bottom:2px solid rgba(201,168,75,.3);">Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="reservationsAdminList"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ── Pedidos de Room Service ── -->
+    <section>
+      <div class="page-top">
+        <h2>PEDIDOS DE ROOM SERVICE</h2>
+        <p>Visualiza todos los pedidos y cambia su estado.</p>
+      </div>
+
+      <div class="admin-row admin-row--wrap admin-row--filter" style="margin-bottom:1rem;align-items:center;">
+        <label for="filterStatus" style="color:#433e34;">Filtrar por estado:</label>
+        <select id="filterStatus" style="padding:.6rem 1rem;border:1px solid #d6d0c5;border-radius:8px;background:#fff;">
+          <option value="all">Todos</option>
+          <option value="pendiente">Pendientes</option>
+          <option value="entregado">Entregados</option>
+          <option value="cancelado">Cancelados</option>
+        </select>
+      </div>
+
+      <div style="overflow-x:auto;">
+        <table style="width:100%;border-collapse:collapse;min-width:600px;">
+          <thead>
+            <tr style="background:rgba(201,168,75,.1);text-align:left;">
+              <th style="padding:.8rem 1rem;border-bottom:2px solid rgba(201,168,75,.3);">ID</th>
+              <th style="padding:.8rem 1rem;border-bottom:2px solid rgba(201,168,75,.3);">Cliente</th>
+              <th style="padding:.8rem 1rem;border-bottom:2px solid rgba(201,168,75,.3);">Items</th>
+              <th style="padding:.8rem 1rem;border-bottom:2px solid rgba(201,168,75,.3);">Total</th>
+              <th style="padding:.8rem 1rem;border-bottom:2px solid rgba(201,168,75,.3);">Estado</th>
+              <th style="padding:.8rem 1rem;border-bottom:2px solid rgba(201,168,75,.3);">Fecha</th>
+            </tr>
+          </thead>
+          <tbody id="serviceListAdmin"></tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; Oasis Hotel — Panel Administrativo</p>
+    </div>
+  </footer>
+
+  <script src="js/ui.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

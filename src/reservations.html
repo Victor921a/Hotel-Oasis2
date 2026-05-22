@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reservas - Oasis Hotel</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="reservations-page">
+  <header class="site-header small">
+    <div class="container">
+      <div class="brand">
+        <h1>Oasis Hotel</h1>
+
+        <p id="welcomeUser"
+        style="margin: 0.5rem 0 0;
+        color: #8f8d8d;
+        font: 1.5em comic sans ms;"></p>
+
+      </div>
+
+      <nav class="main-nav">
+        <a href="#" id="logoutBtn" class="btn btn-ghost-inverse">Cerrar sesión</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Botón flotante llamativo en la parte derecha para Room Service -->
+  <a href="service.html" class="floating-service-btn" title="Solicitar Pedidos o Servicios a Habitación">
+    <span class="bell-icon">🛎️</span>
+    <span class="btn-text">Room Service</span>
+  </a>
+
+  <main class="container">
+    <div class="page-top">
+      <div>
+        <h2>Reservar Habitación</h2>
+
+      </div>
+    </div>
+
+    <!-- Sección Interactiva: Sedes (Izquierda) y Detalles/Panel (Derecha) -->
+    <div class="hotel-experience">
+
+      <!-- Panel de Sedes (Izquierda) -->
+      <div class="hotel-cards">
+        <div class="section-header">
+          <h3>Nuestras Sedes</h3>
+          <p>Selecciona uno de nuestros hoteles premium:</p>
+        </div>
+        <div class="hotel-list" id="hotelList"></div>
+      </div>
+
+      <!-- Panel de Detalles y Habitaciones (Derecha) -->
+      <div class="hotel-details">
+
+        <!-- Estado inicial (vacío) -->
+        <div id="detailsPlaceholder" class="hotel-placeholder">
+          <p>Selecciona una sede de la izquierda para ver habitaciones y detalles</p>
+        </div>
+
+        <!-- Información de la sede seleccionada -->
+        <div id="detailsContent" class="hidden">
+          <div class="section-header">
+            <h3 id="detailSedeName">Nombre de Sede</h3>
+            <p id="detailSedeDescription" style="color: #555; line-height: 1.5;"></p>
+          </div>
+
+          <div class="hotel-features" id="hotelFeatures"></div>
+
+          <h4>Categorías de Habitación</h4>
+          <p style="color: #666; font-size: 0.9rem; margin-bottom: 0.8rem;">Selecciona el tipo de habitación:</p>
+
+          <div class="room-categories" id="categoryList"></div>
+
+          <!-- Detalles de la Habitación Seleccionada -->
+          <div id="categoryDetail" class="category-info hidden">
+            <h4 id="catName">Nombre Habitación</h4>
+            <p id="catDesc" style="font-size: 0.9rem; color: #555;"></p>
+            <p class="price" id="catPrice">S/0 / noche</p>
+            <button id="bookCategoryBtn" class="btn btn-primary" style="width: 100%; margin-top: 0.6rem; font-weight: bold;">
+              Reservar Habitación
+            </button>
+          </div>
+
+          <!-- Formulario de Reservación (Aparece al seleccionar la habitación) -->
+          <div id="reserveFormContainer" class="hidden" style="margin-top: 1.5rem;">
+            <form id="reserveForm" class="reservation-form">
+              <h3>Establecer tiempo de estadía</h3>
+
+              <div class="reservation-summary">
+                <p style="margin: 0.2rem 0;"><strong>Sede:</strong> <span id="summarySede">-</span></p>
+                <p style="margin: 0.2rem 0;"><strong>Habitación:</strong> <span id="summaryRoom">-</span></p>
+                <p style="margin: 0.2rem 0;"><strong>Precio por Noche:</strong> <span id="summaryPrice">-</span></p>
+              </div>
+
+              <label>Fecha de llegada:
+                <input type="date" id="checkin" required>
+              </label>
+
+              <label>Fecha de salida:
+                <input type="date" id="checkout" required>
+              </label>
+
+              <label>Número de huéspedes:
+                <input type="number" id="guests" value="1" min="1" required>
+              </label>
+
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Confirmar Reserva</button>
+                <button type="button" id="cancelReserve" class="btn btn-ghost">Cancelar</button>
+              </div>
+            </form>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Lista de Reservas Activas -->
+    <section id="myReservations" style="margin-top: 3rem;">
+      <h3>Mis Reservas Activas</h3>
+      <ul id="reservationsList"></ul>
+    </section>
+  </main>
+
+  <script src="js/ui.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

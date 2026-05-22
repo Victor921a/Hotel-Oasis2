@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Servicios - Oasis Hotel</title>
+  <link rel="stylesheet" href="css/style.css">
+  <meta name="description" content="Solicita servicio a la habitación durante tu estadía en Oasis Hotel. Postres, comidas y bebidas.">
+</head>
+<body>
+  <header class="site-header small">
+    <div class="container">
+      <div class="brand">
+        <img src="img/logo-oasis.png" alt="Oasis logo" class="logo">
+        <h1>Oasis Hotel</h1>
+      </div>
+      <nav class="main-nav">
+        <a href="reservations.html" class="btn btn-ghost-inverse">Reservas</a>
+        <a href="#" id="logoutBtn2" class="btn btn-ghost-inverse">Cerrar sesión</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container service-page">
+    <div class="page-top">
+      <h2>Servicio a la habitación</h2>
+      <p id="serviceWelcome"></p>
+    </div>
+
+    <section class="service-grid">
+      <div class="service-categories">
+        <div class="section-header">
+          <h3>Elige tu servicio</h3>
+          <p>Selecciona una categoría para ver los insumos disponibles y hacer tu pedido.</p>
+        </div>
+        <div id="serviceReservationPanel" class="service-reservation-panel">
+          <p id="serviceReservationInfo">Selecciona tu reserva activa para pedir room service.</p>
+          <div id="serviceReservationList" class="service-reservation-list"></div>
+        </div>
+        <div id="serviceCategoryList" class="service-category-list"></div>
+      </div>
+
+      <aside id="serviceDetailPanel" class="service-detail-panel hidden">
+        <div class="section-header">
+          <h3 id="serviceDetailTitle"></h3>
+          <p id="serviceDetailDesc"></p>
+        </div>
+        <div id="serviceItems" class="service-item-grid"></div>
+        <div id="serviceCart" class="service-cart hidden">
+          <div class="section-header">
+            <h3>Tu carrito</h3>
+            <p>Verifica las cantidades y el total antes de enviar el pedido.</p>
+          </div>
+          <div id="serviceCartList" class="service-cart-list"></div>
+          <div class="service-cart-footer">
+            <div class="service-cart-total">Total: <strong id="serviceCartTotal">S/0</strong></div>
+            <div class="service-cart-actions">
+              <button id="clearCartBtn" type="button" class="btn btn-ghost">Vaciar carrito</button>
+              <button id="checkoutCartBtn" type="button" class="btn btn-primary">Enviar pedido</button>
+            </div>
+          </div>
+        </div>
+        <button id="backToCategories" type="button" class="btn btn-ghost">Volver a categorías</button>
+      </aside>
+    </section>
+
+    <section class="service-history">
+      <div class="section-header">
+        <h3>Mis solicitudes</h3>
+      </div>
+      <ul id="serviceList"></ul>
+    </section>
+  </main>
+
+  <script src="js/ui.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
+
